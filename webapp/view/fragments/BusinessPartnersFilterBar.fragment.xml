@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:fb="sap.ui.comp.filterbar">
+
+
+	<fb:FilterBar id="filterBar"
+		search="onFilterSearch"
+		clear="onFilterReset"
+		useToolbar="false"
+		showGoOnFB="true"
+		showClearOnFB="true">
+		<fb:filterItems>
+			<fb:FilterItem name="name"
+				label="{i18n>Name}">
+				<fb:control>
+					<Input id="nameFilter"
+						class="sapUiSmallMarginBottom"
+						value="{filtersModel>/Name}">
+
+					</Input>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="country"
+				label="{i18n>Country}">
+				<fb:control>
+					<MultiComboBox id="countryFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/Country}"
+						items="{
+							path: 'mainModel>/data'
+						}">
+						<core:Item key="{mainModel>Country}"
+							text="{mainModel>Country}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="type"
+				label="{i18n>Type}">
+				<fb:control>
+					<MultiComboBox id="typeFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/Type}"
+						items="{
+							path: 'mainModel>/data',
+							sorter : {
+								path : 'Name' 
+							}
+						}">
+						<core:Item key="{mainModel>Type}"
+							text="{mainModel>Type}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			
+		</fb:filterItems>
+	</fb:FilterBar>
+
+
+
+</core:FragmentDefinition>

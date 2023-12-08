@@ -1,0 +1,88 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+
+
+	<VBox>
+
+		<Toolbar class="sapUiMediumMarginTop"
+			id="toolbar1">
+
+			<Title text="{i18n>Attachments} ({mainModel>/attachments/length})" />
+			<ToolbarSpacer/>
+			<Button text="Upload"
+				type="Transparent" />
+		</Toolbar>
+
+
+		<List growing="true"
+			growingThreshold="5"
+			busyIndicatorDelay="0"
+			busy="{mainModel>/attachmentsBusy}"
+			noDataText="{i18n>NoAttachmentsForThisEmployee}"
+			items="{mainModel>/attachments}">
+			<CustomListItem>
+				<HBox justifyContent="Start">
+					<core:Icon size="3rem"
+						src="sap-icon://document"
+						class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
+					<HBox width="100%"
+						justifyContent="SpaceBetween"
+						alignItems="End">
+						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+							<Title class="sapUiSmallMarginBottom"
+								text="{
+									parts: [
+										{path: 'mainModel>AttachmentID'}, 
+										{path: 'mainModel>/allAttachments'},
+										{path: 'propertiesModel>/Name'}
+									],
+									formatter: '.formatter.formatEntityDataByProperty'
+								}" />
+							<HBox>
+								<Label class="sapUiTinyMarginEnd"
+									text="{i18n>CreatedBy}: "/>
+								<Link class="sapUiSmallMarginEnd"
+									href="#/employees/{parts: [
+										{path: 'mainModel>AttachmentID'}, 
+										{path: 'mainModel>/allAttachments'}
+									],
+									formatter: '.formatter.formatAttachmentId'}"
+									text="{
+									parts: [
+										{path: 'mainModel>AttachmentID'}, 
+										{path: 'mainModel>/allAttachments'},
+										{path: 'mainModel>/allEmployees'}
+									],
+									formatter: '.formatter.formatAttachmentAuthor'
+								}"/>
+								<Label class="sapUiTinyMarginEnd"
+									text="{i18n>CreatedOn}: "/>
+								<Link class="sapUiSmallMarginEnd"
+									text="{
+									parts: [
+										{path: 'mainModel>AttachmentID'}, 
+										{path: 'mainModel>/allAttachments'}
+									],
+									formatter: '.formatter.formatAttachmentDate'
+								}"/>
+							</HBox>
+
+						</VBox>
+						<HBox>
+							<Button icon="sap-icon://edit"
+								type="Transparent" />
+							<Button icon="sap-icon://decline"
+								type="Transparent" />
+						</HBox>
+
+					</HBox>
+				</HBox>
+			</CustomListItem>
+		</List>
+
+
+	</VBox>
+
+
+
+</core:FragmentDefinition>

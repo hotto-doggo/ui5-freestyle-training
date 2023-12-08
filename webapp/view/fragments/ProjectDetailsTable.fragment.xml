@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+
+
+
+	<Table sticky="HeaderToolbar,ColumnHeaders"
+		growing="true"
+		growingThreshold="20"
+		id="idEntitiesTable"
+		busyIndicatorDelay="0"
+		busy="{mainModel>/busy}"
+		columns="{viewConfig>/columns}"
+		items="{mainModel>/rel_Employees}"
+		noDataText="{i18n>NoDataWasFoundForThisRequest}">
+
+		<columns>
+			<Column vAlign="Middle"
+				hAlign="{viewConfig>hAlign}"
+				minScreenWidth="{viewConfig>minScreenWidth}"
+				demandPopin="true">
+				<Text text="{viewConfig>text}" />
+			</Column>
+
+		</columns>
+
+		<items>
+			<ColumnListItem press="onTableItemPress"
+				vAlign="Middle"
+				type="Navigation">
+
+				<Text text="{
+					parts: [
+						{path: 'mainModel>FirstName'}, 
+						{path: 'mainModel>LastName'}
+					]
+				}" />
+				<Text text="{
+					parts: [
+						{path: 'mainModel>DepartmentID'}, 
+						{path: 'mainModel>/departments'},
+						{path: 'propertiesModel>/Name'}
+					],
+					formatter: '.formatter.formatEntityDataByProperty'
+				}" />
+				<Text text="{
+					parts: [
+						{path: 'mainModel>PositionID'}, 
+						{path: 'mainModel>/positions'},
+						{path: 'propertiesModel>/Name'}
+					],
+					formatter: '.formatter.formatEntityDataByProperty'
+				}" />
+				<Text text="{path: 'mainModel>Role'}" />
+				<Text text="{path: 'mainModel>Location'}" />
+
+			</ColumnListItem>
+		</items>
+
+	</Table>
+
+</core:FragmentDefinition>

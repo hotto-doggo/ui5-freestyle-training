@@ -1,0 +1,102 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:dnd="sap.ui.core.dnd"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:control="manage.company.control">
+
+
+
+	<Table sticky="HeaderToolbar,ColumnHeaders"
+		growing="true"
+		growingThreshold="20"
+		id="idEntitiesTable"
+		busyIndicatorDelay="0"
+		busy="{mainModel>/busy}"
+		columns="{viewConfig>/columns}"
+		items="{mainModel>/data}"
+		noDataText="{i18n>NoDataWasFoundForThisRequest}">
+
+		<headerToolbar>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+
+				<Button type="Transparent"
+					icon="sap-icon://add"
+					press="onOpenDialogPress" />
+
+				<Button type="Transparent"
+					icon="sap-icon://home-share"
+					press="onOpenMapPress" />
+
+				<control:DeleteButton text="{i18n>Delete}"
+					icon="sap-icon://delete">
+					<control:dragDropConfig>
+						<dnd:DropInfo drop="onDropDelete" />
+					</control:dragDropConfig>
+				</control:DeleteButton>
+			</OverflowToolbar>
+		</headerToolbar>
+
+		<columns>
+
+			<Column vAlign="Middle"
+				hAlign="{viewConfig>hAlign}"
+				minScreenWidth="{viewConfig>minScreenWidth}"
+				demandPopin="true">
+				<Text text="{viewConfig>text}" />
+			</Column>
+
+		</columns>
+
+		<items>
+			<ColumnListItem vAlign="Middle"
+				type="Inactive">
+
+				<Link href="{
+						path: 'mainModel>EmployeeID',
+						formatter: '.formatter.formatEmployeeLink'
+					}"
+					text="{
+						parts: [
+							{path: 'mainModel>EmployeeID'}, 
+							{path: 'mainModel>/employees'}
+						],
+						formatter: '.formatter.formatBossName'
+					}" />
+				<Link href="{
+						path: 'mainModel>ProjectID',
+						formatter: '.formatter.formatProjectLink'
+					}"
+					text="{
+						parts: [
+							{path: 'mainModel>ProjectID'}, 
+							{path: 'mainModel>/projects'},
+							{path: 'propertiesModel>/Name'}
+						],
+						formatter: '.formatter.formatEntityDataByProperty'
+					}" />
+				<Text text="{
+						parts: [
+							{path: 'mainModel>StartDate'}, 
+							{path: 'mainModel>EndDate'}
+						],
+						formatter: '.formatter.formatDateRange'
+					}" />
+				<Link text="{mainModel>FromLocation} ⮕ {mainModel>ToLocation}"
+					press="onOpenFlightMapPress" />
+				<Text text="{path: 'mainModel>Aim'}" />
+				<Button type="Transparent"
+					icon="sap-icon://decline"
+					press="onDeleteTableItem" />
+
+			</ColumnListItem>
+		</items>
+
+		<dragDropConfig>
+			<dnd:DragInfo sourceAggregation="items"/>
+		</dragDropConfig>
+
+
+	</Table>
+
+</core:FragmentDefinition>

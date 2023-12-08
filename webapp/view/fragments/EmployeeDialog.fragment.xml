@@ -1,0 +1,237 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog id="EmployeeDialog"
+		title="{i18n>CreateNewEmployee}"
+		afterClose="onAfterClose">
+		<f:SimpleForm id="employeeDialogID"
+			maxContainerCols="1"
+			layout="ResponsiveGridLayout"
+			labelSpanL="12"
+			labelSpanM="12"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="1"
+			columnsM="1">
+			<f:content>
+				<Label required="true"
+					text="{i18n>FirstName}"/>
+				<Input type="Text"
+					placeholder="{i18n>EnterFirstName}"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+					path:'dialogModel>/FirstName',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 2
+					}
+				}" />
+
+				<Label required="true"
+					text="{i18n>LastName}"/>
+				<Input type="Text"
+					placeholder="{i18n>EnterLastName}"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+					path:'dialogModel>/LastName',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 2
+					}
+				}" />
+
+				<Label required="true"
+					text="{i18n>BirthDate}"/>
+				<DatePicker fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+					path: 'dialogModel>/BirthDate',
+					type: 'sap.ui.model.type.DateTime',
+					formatOptions: {
+						pattern: 'dd.MM.YYYY'
+					}
+				}" />
+
+				<Label required="true"
+					text="{i18n>Location}" />
+				<Input type="Text"
+					placeholder="{i18n>EnterLocation}"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+					path: 'dialogModel>/Location',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 2
+					}
+				}" />
+
+				<Label required="true"
+					text="{i18n>RecruitmentDate}"/>
+				<DatePicker fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+					path: 'dialogModel>/RecruitmentDate',
+					type: 'sap.ui.model.type.DateTime',
+					formatOptions: {
+						pattern: 'dd.MM.YYYY'
+					}
+				}" />
+
+				<Label required="true"
+					text="{i18n>Status}"/>
+				<Select fieldGroupIds="validateEmployeeDialogGroupID"
+					width="100%"
+					selectedKey="{
+					path: 'dialogModel>/StatusCode',
+					type: 'sap.ui.model.type.String'
+				}"
+					forceSelection="false"
+					items="{
+					path: 'mainModel>/statuses',
+					sorter : {
+						path : 'StatusCode' 
+					}
+				}">
+					<core:Item key="{mainModel>StatusCode}"
+						text="{mainModel>Description}"/>
+				</Select>
+
+				<Label required="true"
+					text="{i18n>WorkExperience}"/>
+				<Input fieldGroupIds="validateEmployeeDialogGroupID"
+					placeholder="{i18n>EnterWorkExperience}"
+					type="Number"
+					value="{
+					path: 'dialogModel>/WorkExperience',
+					type: 'sap.ui.model.type.Integer',
+					constraints: {
+						minimum: 0
+					}
+				}" />
+
+				<Label required="true"
+					text="{i18n>Contacts}"/>
+				<Input type="Text"
+					placeholder="{i18n>EnterContacts}"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+					path:'dialogModel>/Contacts',
+					type: 'sap.ui.model.type.String'
+				}" />
+
+				<Label required="true"
+					text="{i18n>Boss}"/>
+				<ComboBox fieldGroupIds="validateEmployeeDialogGroupID"
+					width="100%"
+					selectedKey="{dialogModel>/BossID}"
+					items="{
+					path: 'mainModel>/data',
+					sorter : {
+						path : 'FirstName' 
+					}
+				}">
+					<core:Item key="{mainModel>ID}"
+						text="{mainModel>FirstName} {mainModel>LastName}"/>
+				</ComboBox>
+
+				<Label required="true"
+					text="{i18n>Department}"/>
+				<Select fieldGroupIds="validateEmployeeDialogGroupID"
+					selectedKey="{dialogModel>/DepartmentID}"
+					forceSelection="false"
+					items="{
+					path: 'mainModel>/departments',
+					sorter : {
+						path : 'Name' 
+					}
+				}">
+					<core:Item key="{mainModel>ID}"
+						text="{mainModel>Name}"/>
+				</Select>
+
+				<Label required="true"
+					text="{i18n>Position}"/>
+				<Select fieldGroupIds="validateEmployeeDialogGroupID"
+					selectedKey="{dialogModel>/PositionID}"
+					forceSelection="false"
+					items="{
+					path: 'mainModel>/positions',
+					sorter : {
+						path : 'Name' 
+					}
+				}">
+					<core:Item key="{mainModel>ID}"
+						text="{mainModel>Name}"/>
+				</Select>
+
+				<Label required="true"
+					text="{i18n>Level}"/>
+				<Select fieldGroupIds="validateEmployeeDialogGroupID"
+					selectedKey="{dialogModel>/LevelID}"
+					forceSelection="false"
+					items="{
+					path: 'mainModel>/levels'
+				}">
+					<core:Item key="{mainModel>ID}"
+						text="{mainModel>Name}"/>
+				</Select>
+
+				<Label required="true"
+					text="{i18n>Role}"/>
+				<Select fieldGroupIds="validateEmployeeDialogGroupID"
+					width="100%"
+					selectedKey="{
+					path: 'dialogModel>/Role',
+					type: 'sap.ui.model.type.String'
+				}"
+					forceSelection="false"
+					items="{
+					path: 'mainModel>/roles',
+					sorter : {
+						path : 'Name' 
+					}
+				}">
+					<core:Item key="{mainModel>Name}"
+						text="{mainModel>Name}"/>
+				</Select>
+
+				<Label required="true"
+					text="{i18n>EnglishLevel}"/>
+				<Select fieldGroupIds="validateEmployeeDialogGroupID"
+					selectedKey="{
+					path: 'dialogModel>/EnglishLevel',
+					type: 'sap.ui.model.type.String'
+				}"
+					forceSelection="false"
+					items="{
+					path: 'mainModel>/languageLevels'
+				}">
+					<core:Item key="{mainModel>Level}"
+						text="{mainModel>Level}"/>
+				</Select>
+
+				<Label required="true"
+					text="{i18n>GermanLevel}"/>
+				<Select fieldGroupIds="validateEmployeeDialogGroupID"
+					selectedKey="{
+					path: 'dialogModel>/GermanLevel',
+					type: 'sap.ui.model.type.String'
+				}"
+					forceSelection="false"
+					items="{
+					path: 'mainModel>/languageLevels'
+				}">
+					<core:Item key="{mainModel>Level}"
+						text="{mainModel>Level}"/>
+				</Select>
+
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+			<Button text="{i18n>Create}"
+				press="onDialogCreatePress"
+				type="Emphasized" />
+			<Button text="{i18n>Close}"
+				press="onDialogCancelPress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

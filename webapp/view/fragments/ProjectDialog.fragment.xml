@@ -1,0 +1,140 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog contentWidth="700px"
+		id="ProjectDialog"
+		title="{i18n>CreateProject}"
+		afterClose="onAfterClose">
+		<f:SimpleForm id="projectDialogID"
+			maxContainerCols="1"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanL="2"
+			emptySpanL="2"
+			labelSpanM="2"
+			emptySpanM="2"
+			labelSpanS="12"
+			emptySpanS="0"
+			columnsL="1"
+			columnsM="1"
+			adjustLabelSpan="false">
+			<f:content>
+				<Label required="true"
+					text="{i18n>Name}"/>
+				<Input type="Text"
+					placeholder="{i18n>EnterProjectName}"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+					path:'dialogModel>/Name',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 2
+					}
+				}" />
+
+				<Label required="true"
+					text="{i18n>Type}"/>
+				<Select fieldGroupIds="validateEmployeeDialogGroupID"
+					width="100%"
+					selectedKey="{
+					path: 'dialogModel>/Type',
+					type: 'sap.ui.model.type.String'
+				}"
+					forceSelection="false"
+					items="{
+					path: 'mainModel>/types',
+					sorter : {
+						path : 'Type' 
+					}
+				}">
+					<core:Item key="{mainModel>Type}"
+						text="{mainModel>Type}"/>
+				</Select>
+
+				<Label required="true"
+					text="{i18n>Location}"/>
+				<ComboBox fieldGroupIds="validateEmployeeDialogGroupID"
+					width="100%"
+					selectedKey="{
+					path: 'dialogModel>/Location',
+					type: 'sap.ui.model.type.String'
+				}"
+					items="{
+					path: 'mainModel>/data',
+					sorter : {
+						path : 'Type' 
+					}
+				}">
+					<core:Item key="{mainModel>Location}"
+						text="{mainModel>Location}"/>
+				</ComboBox>
+
+				<Label required="true"
+					text="{i18n>ProjectStart}"/>
+				<DatePicker fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+					path: 'dialogModel>/StartDate',
+					type: 'sap.ui.model.type.DateTime',
+					formatOptions: {
+						pattern: 'dd.MM.YYYY'
+					}
+				}" />
+
+				<Label required="true"
+					text="{i18n>ProjectEnd}"/>
+				<DatePicker fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+					path: 'dialogModel>/EndDate',
+					type: 'sap.ui.model.type.DateTime',
+					formatOptions: {
+						pattern: 'dd.MM.YYYY'
+					}
+				}" />
+
+				<Label required="true"
+					text="{i18n>Lead}"/>
+				<ComboBox fieldGroupIds="validateEmployeeDialogGroupID"
+					width="100%"
+					selectedKey="{
+					path: 'dialogModel>/LeadID',
+					type: 'sap.ui.model.type.String'
+				}"
+					items="{mainModel>/employees}">
+					<core:Item key="{mainModel>ID}"
+						text="{
+							parts: [
+								{path: 'mainModel>ID'}, 
+								{path: 'mainModel>/employees'}],
+							formatter: '.formatter.formatBossName'
+						}"/>
+				</ComboBox>
+
+				<Label required="true"
+					text="{i18n>Customer}"/>
+				<ComboBox fieldGroupIds="validateEmployeeDialogGroupID"
+					width="100%"
+					selectedKey="{dialogModel>/CustomerID}"
+					items="{
+					path: 'mainModel>/partners',
+					sorter : {
+						path : 'Name' 
+					}
+				}">
+					<core:Item key="{mainModel>ID}"
+						text="{mainModel>Name}"/>
+				</ComboBox>
+
+
+
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+			<Button text="{i18n>Create}"
+				press="onDialogCreatePress"
+				type="Emphasized" />
+			<Button text="{i18n>Close}"
+				press="onDialogCancelPress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

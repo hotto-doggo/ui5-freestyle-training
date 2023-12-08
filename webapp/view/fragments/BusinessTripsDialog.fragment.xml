@@ -1,0 +1,98 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog contentWidth="700px"
+		id="ProjectDialog"
+		title="{i18n>CreateBusinessTrip}"
+		afterClose="onAfterClose">
+		<f:SimpleForm id="businessTripsDialogID"
+			maxContainerCols="1"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanL="2"
+			emptySpanL="2"
+			labelSpanM="2"
+			emptySpanM="2"
+			labelSpanS="12"
+			emptySpanS="0"
+			columnsL="1"
+			columnsM="1"
+			adjustLabelSpan="false">
+			<f:content>
+				<Label required="true"
+					text="{i18n>Employee}"/>
+				<ComboBox fieldGroupIds="validateEmployeeDialogGroupID"
+					width="100%"
+					selectedKey="{
+						path: 'dialogModel>/EmployeeID',
+						type: 'sap.ui.model.type.String'
+					}"
+					items="{
+						path: 'mainModel>/employees',
+						sorter : {
+							path : 'Type' 
+						}
+					}">
+					<core:Item key="{mainModel>ID}"
+						text="{mainModel>FirstName} {mainModel>LastName}"/>
+				</ComboBox>
+
+				<Label required="true"
+					text="{i18n>Project}"/>
+				<ComboBox fieldGroupIds="validateEmployeeDialogGroupID"
+					width="100%"
+					selectedKey="{
+						path: 'dialogModel>/ProjectID',
+						type: 'sap.ui.model.type.String'
+					}"
+					items="{
+						path: 'mainModel>/projects',
+						sorter : {
+							path : 'Type' 
+						}
+					}">
+					<core:Item key="{mainModel>ID}"
+						text="{mainModel>Name}"/>
+				</ComboBox>
+
+				<Label required="true"
+					text="{i18n>From}"/>
+				<Input value="{dialogModel>/FromLocation}">
+
+				</Input>
+
+				<Label required="true"
+					text="{i18n>To}"/>
+				<Input value="{dialogModel>/ToLocation}">
+
+				</Input>
+
+				<Label required="true"
+					text="{i18n>Timeline}"/>
+				<DateRangeSelection id="projectTimelineFilter"
+					displayFormat="dd.MM.YYYY"
+					dateValue="{dialogModel>/StartDate}"
+					secondDateValue="{dialogModel>/EndDate}"/>
+
+				<Label required="true"
+					text="{i18n>Aim}"/>
+				<TextArea value="{dialogModel>/Aim}"
+				rows="5"
+					growing="true"
+					growingMaxLines="5"
+					width="100%"/>
+
+
+
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+			<Button text="{i18n>Create}"
+				press="onDialogCreatePress"
+				type="Emphasized" />
+			<Button text="{i18n>Close}"
+				press="onDialogCancelPress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

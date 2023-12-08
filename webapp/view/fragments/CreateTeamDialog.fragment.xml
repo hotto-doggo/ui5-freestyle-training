@@ -1,0 +1,77 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog contentWidth="700px"
+		id="CreateTeamDialog"
+		title="{i18n>CreateTeam}"
+		afterClose="onAfterClose">
+
+		<f:SimpleForm id="CreateTeamDialogID"
+			editable="true"
+			maxContainerCols="1"
+			layout="ResponsiveGridLayout"
+			labelSpanL="2"
+			emptySpanL="2"
+			labelSpanM="2"
+			emptySpanM="2"
+			labelSpanS="12"
+			emptySpanS="0"
+			columnsL="1"
+			columnsM="1"
+			adjustLabelSpan="false">
+			<f:content>
+
+				<Label width="100%"
+					text="{i18n>TeamName}" />
+				<Input width="100%"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					type="String"
+					value="{
+						path: 'createTeamModel>/Name',
+						type: 'sap.ui.model.type.String',
+						constraints: {
+							minLength: 2
+						}
+					}" />
+
+				<Label width="100%"
+					text="{i18n>Lead}" />
+				<ComboBox fieldGroupIds="validateEmployeeDialogGroupID"
+					width="100%"
+					selectedKey="{createTeamModel>/LeadID}"
+					items="{
+					path: 'teamsModel>/employees',
+					sorter : {
+						path : 'FirstName' 
+					}
+				}">
+					<core:Item key="{teamsModel>ID}"
+						text="{teamsModel>FirstName} {teamsModel>LastName} ({
+									parts: [
+										{path: 'teamsModel>PositionID'},
+										{path: 'teamsModel>/positions'},
+										{path: 'propertiesModel>/Name'}
+									],
+									formatter: '.formatter.formatEntityDataByProperty'
+								}, { 
+									parts: [
+										{path: 'teamsModel>DepartmentID'},
+										{path: 'teamsModel>/departments'},
+										{path: 'propertiesModel>/Name'}
+									],
+									formatter: '.formatter.formatEntityDataByProperty'
+								})"/>
+				</ComboBox>
+
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+			<Button text="{i18n>Continue}"
+				press="onTeamContinuePress"
+				type="Emphasized" />
+			<Button text="{i18n>Cancel}"
+				press="onTeamCancelPress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

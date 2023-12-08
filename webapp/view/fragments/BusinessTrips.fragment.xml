@@ -1,0 +1,65 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+
+
+	<VBox>
+
+		<Toolbar class="sapUiMediumMarginTop"
+			id="toolbar1">
+
+			<Title text="{i18n>ListOfTrips}" />
+
+		</Toolbar>
+
+
+		<List growing="true"
+			growingThreshold="5"
+			busyIndicatorDelay="0"
+			busy="{mainModel>/tripsBusy}"
+			noDataText="{i18n>NoBusinessTripsForThisProject}"
+			items="{mainModel>/rel_Trips}">
+			<CustomListItem>
+
+				<HBox width="100%"
+					justifyContent="SpaceBetween"
+					alignItems="End">
+					<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+						<Title class="sapUiSmallMarginBottom"
+							text="{mainModel>Aim}" />
+						<HBox>
+							<Label text="{i18n>StartDate}: {
+									parts: [
+										{path: 'mainModel>StartDate'} 
+									],
+									formatter: '.formatter.formatDateWithDot'
+								}"/>
+						</HBox>
+						<HBox>
+							<Label text="{i18n>EndDate}: {
+									parts: [
+										{path: 'mainModel>EndDate'}
+									],
+									formatter: '.formatter.formatDateWithDot'
+								}"/>
+						</HBox>
+						<HBox>
+							<Label text="{i18n>From}: {mainModel>FromLocation}" />
+						</HBox>
+						<HBox>
+							<Label text="{i18n>To}: {mainModel>ToLocation}" />
+						</HBox>
+
+					</VBox>
+
+				</HBox>
+
+			</CustomListItem>
+		</List>
+
+
+	</VBox>
+
+
+
+</core:FragmentDefinition>

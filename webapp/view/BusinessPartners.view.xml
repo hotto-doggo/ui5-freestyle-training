@@ -1,0 +1,42 @@
+<mvc:View xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	controllerName="manage.company.controller.BusinessPartners">
+
+
+	<f:DynamicPage class="sapUiContentPadding"
+		headerExpanded="true">
+
+		<f:title>
+			<f:DynamicPageTitle >
+				<f:heading>
+					<Title text="{i18n>BusinessPartners}" />
+				</f:heading>
+
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<f:header>
+
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+
+					<core:Fragment id="filters"
+						fragmentName="manage.company.view.fragments.BusinessPartnersFilterBar"
+						type="XML" />
+
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+
+		<f:content class="sapUiContentPadding">
+
+			<core:Fragment fragmentName="manage.company.view.fragments.BusinessPartnersOverviewTable"
+				type="XML" />
+
+		</f:content>
+
+	</f:DynamicPage>
+
+</mvc:View>

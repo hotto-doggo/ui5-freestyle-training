@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+
+
+
+	<Table sticky="HeaderToolbar,ColumnHeaders"
+		growing="true"
+		growingThreshold="20"
+		id="idEntitiesTable"
+		busyIndicatorDelay="0"
+		busy="{mainModel>/busy}"
+		columns="{viewConfig>/columns}"
+		noDataText="{i18n>NoDataWasFoundForThisRequest}">
+
+		<columns>
+			<Column vAlign="Middle"
+				hAlign="{viewConfig>hAlign}"
+				minScreenWidth="{viewConfig>minScreenWidth}"
+				demandPopin="true">
+				<Text text="{viewConfig>text}" />
+			</Column>
+
+		</columns>
+
+
+	</Table>
+
+
+</core:FragmentDefinition>

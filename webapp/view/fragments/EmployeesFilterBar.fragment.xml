@@ -1,0 +1,109 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:fb="sap.ui.comp.filterbar">
+
+
+	<fb:FilterBar id="filterBar"
+		search="onFilterSearch"
+		clear="onFilterReset"
+		useToolbar="false"
+		showGoOnFB="true"
+		showClearOnFB="true">
+		<fb:filterItems>
+			<fb:FilterItem name="fullName"
+				label="{i18n>FullName}">
+				<fb:control>
+					<Input id="fullNameFilter"
+						class="sapUiSmallMarginBottom"
+						value="{filtersModel>/LastName}">
+
+					</Input>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="status"
+				label="{i18n>Status}">
+				<fb:control>
+					<MultiComboBox id="statusFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/StatusCode}"
+						items="{mainModel>/statuses}"
+						showSecondaryValues= "true">
+						<core:ListItem key="{mainModel>StatusCode}"
+							text="{mainModel>Description}"
+							additionalText="{mainModel>StatusCode}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="department"
+				label="{i18n>Department}">
+				<fb:control>
+					<MultiComboBox id="departmentFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/DepartmentID}"
+						items="{
+							path: 'mainModel>/departments',
+							sorter : {
+								path : 'Name' 
+							}
+						}">
+						<core:Item key="{mainModel>ID}"
+							text="{mainModel>Name}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="location"
+				label="{i18n>Location}">
+				<fb:control>
+					<Input id="locationFilter"
+						class="sapUiSmallMarginBottom"
+						value="{filtersModel>/Location}">
+
+					</Input>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="level"
+				label="{i18n>Level}">
+				<fb:control>
+					<MultiComboBox id="levelFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/LevelID}"
+						items="{mainModel>/levels}">
+						<core:Item key="{mainModel>ID}"
+							text="{mainModel>Name}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="englishLevel"
+				label="{i18n>EnglishLevel}">
+				<fb:control>
+					<MultiComboBox id="englishLevelFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/EnglishLevel}"
+						items="{mainModel>/languageLevels}">
+						<core:Item key="{mainModel>Level}"
+							text="{mainModel>Level}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="skills"
+				label="{i18n>Skills}">
+				<fb:control>
+					<MultiComboBox id="skillsFilter"
+						fieldGroupIds="filterBarGroupID"
+						items="{
+							path: 'mainModel>/skills',
+							sorter : {
+								path : 'Name' 
+							}
+						}">
+						<core:Item key="{mainModel>ID}"
+							text="{mainModel>Name}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+		</fb:filterItems>
+	</fb:FilterBar>
+
+
+
+</core:FragmentDefinition>

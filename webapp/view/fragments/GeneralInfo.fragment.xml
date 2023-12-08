@@ -1,0 +1,80 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+
+	<VBox>
+
+		<Title text="{i18n>GeneralInfo}" />
+		<HBox busyIndicatorDelay="0"
+			busy="{mainModel>/generalInfoBusy}">
+			<l:VerticalLayout class="sapUiSmallMarginEnd">
+				<Label text="{i18n>BirthDate}"/>
+				<Text visible="{= !${mainModel>/edit} }"
+					text="{
+					path: 'mainModel>/employeeData/BirthDate',
+					type: 'sap.ui.model.type.DateTime',
+					formatOptions: {
+						pattern: 'dd.MM.YYYY'
+					}
+				}" />
+
+				<DatePicker visible="{mainModel>/edit}"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+					path: 'editModel>/BirthDate',
+					type: 'sap.ui.model.type.DateTime',
+					formatOptions: {
+						pattern: 'dd.MM.YYYY'
+					}
+				}" />
+			</l:VerticalLayout>
+
+			<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+				<Label text="{i18n>EnglishLevel}"/>
+				<Text visible="{= !${mainModel>/edit} }"
+					text="{mainModel>/employeeData/EnglishLevel}" />
+
+				<Select visible="{mainModel>/edit}"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					selectedKey="{
+					path: 'editModel>/EnglishLevel',
+					type: 'sap.ui.model.type.String'
+				}"
+					forceSelection="false"
+					items="{
+					path: 'mainModel>/languageLevels'
+				}">
+					<core:Item key="{mainModel>Level}"
+						text="{mainModel>Level}"/>
+				</Select>
+			</l:VerticalLayout>
+
+			<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+				<Label text="{i18n>GermanLevel}"/>
+				<Text visible="{= !${mainModel>/edit} }"
+					text="{mainModel>/employeeData/GermanLevel}" />
+
+				<Select visible="{mainModel>/edit}"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					selectedKey="{
+					path: 'editModel>/GermanLevel',
+					type: 'sap.ui.model.type.String'
+				}"
+					forceSelection="false"
+					items="{
+					path: 'mainModel>/languageLevels'
+				}">
+					<core:Item key="{mainModel>Level}"
+						text="{mainModel>Level}"/>
+				</Select>
+			</l:VerticalLayout>
+
+
+		</HBox>
+
+	</VBox>
+
+
+
+</core:FragmentDefinition>

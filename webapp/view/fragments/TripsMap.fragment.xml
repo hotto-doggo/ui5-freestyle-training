@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:control="manage.company.control">
+	<Dialog contentWidth="1000px"
+		id="allTripsDialog"
+		title="{i18n>AllBusinessTripsOnMap}">
+		<f:SimpleForm id="allTripsDialogID"
+			maxContainerCols="1"
+			editable="true">
+			<f:content>
+
+				<control:GMap markers="{mainModel>/coordinates}"
+					mapType="Global" />
+
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+			<Button text="{i18n>Close}"
+				press="onMapDialogClosePress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
+
+
+
+
+
+	
+
+
+

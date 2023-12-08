@@ -1,0 +1,43 @@
+<mvc:View xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	xmlns:dnd="sap.ui.core.dnd"
+	xmlns:control="manage.company.control"
+	controllerName="manage.company.controller.BusinessTrips">
+
+	<f:DynamicPage class="sapUiContentPadding"
+		headerExpanded="true">
+
+		<f:title>
+			<f:DynamicPageTitle >
+				<f:heading>
+					<Title text="{i18n>BusinessTrips}" />
+				</f:heading>
+
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<f:header>
+
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+
+					<core:Fragment id="filters"
+						fragmentName="manage.company.view.fragments.BusinessTripsFilterBar"
+						type="XML" />
+
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+
+		<f:content class="sapUiContentPadding">
+
+			<core:Fragment fragmentName="manage.company.view.fragments.BusinessTripsOverviewTable"
+				type="XML" />
+
+		</f:content>
+
+	</f:DynamicPage>
+
+</mvc:View>

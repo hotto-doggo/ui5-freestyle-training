@@ -1,0 +1,80 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+
+	<VBox busyIndicatorDelay="0"
+		busy="{mainModel>/generalInfoBusy}">
+
+		<Title text="{i18n>AddressInfo}"
+			class="sapUiSmallMarginBottom" />
+
+		<HBox class="sapUiSmallMarginBottom">
+			<l:VerticalLayout class="sapUiSmallMarginEnd">
+				<Label text="{i18n>Country}"/>
+				<Text visible="{= !${mainModel>/edit} }"
+					text="{mainModel>/businessPartnerData/Country}" />
+
+				<Input visible="{mainModel>/edit}"
+					type="Text"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+							path:'editModel>/Country',
+							type: 'sap.ui.model.type.String'
+						}" />
+			</l:VerticalLayout>
+
+			<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+				<Label text="{i18n>City}"/>
+				<Text visible="{= !${mainModel>/edit} }"
+					text="{mainModel>/businessPartnerData/City}" />
+
+				<Input visible="{mainModel>/edit}"
+					type="Text"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+							path:'editModel>/City',
+							type: 'sap.ui.model.type.String'
+						}" />
+			</l:VerticalLayout>
+
+			<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+				<Label text="{i18n>Address}"/>
+				<Text visible="{= !${mainModel>/edit} }"
+					text="{mainModel>/businessPartnerData/Address}" />
+
+				<Input visible="{mainModel>/edit}"
+					type="Text"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+							path:'editModel>/Address',
+							type: 'sap.ui.model.type.String'
+						}" />
+			</l:VerticalLayout>
+
+
+		</HBox>
+
+		<Title text="{i18n>Contacts}"
+			class="sapUiSmallMarginBottom" />
+		<HBox class="sapUiSmallMarginBottom">
+			<l:VerticalLayout class="sapUiSmallMarginEnd">
+				<Label text="{i18n>Contacts}"/>
+				<Text visible="{= !${mainModel>/edit} }"
+					text="{mainModel>/businessPartnerData/Contacts}" />
+
+				<Input visible="{mainModel>/edit}"
+					type="Text"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+							path:'editModel>/Contacts',
+							type: 'sap.ui.model.type.String'
+						}" />
+			</l:VerticalLayout>
+		</HBox>
+
+	</VBox>
+
+
+
+</core:FragmentDefinition>

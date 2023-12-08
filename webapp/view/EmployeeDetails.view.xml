@@ -1,0 +1,370 @@
+<mvc:View xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:uxap="sap.uxap"
+	controllerName="manage.company.controller.EmployeeDetails">
+
+	<uxap:ObjectPageLayout id="detailsPageID"
+		showTitleInHeaderContent="true"
+		showEditHeaderButton="true"
+		showFooter="{mainModel>/edit}">
+		<uxap:headerTitle>
+			<uxap:ObjectPageDynamicHeaderTitle busyIndicatorDelay="0"
+				busy="{mainModel>/titleBusy}">
+
+				<uxap:expandedHeading>
+					<Title text="{mainModel>/employeeData/FirstName} {mainModel>/employeeData/LastName}"
+						wrapping="true"/>
+				</uxap:expandedHeading>
+
+				<uxap:snappedHeading>
+					<FlexBox fitContainer="true"
+						alignItems="Center">
+						<Avatar src="{mainModel>/employeeData/Photo}"
+							class="sapUiTinyMarginEnd" />
+						<Title text="{mainModel>/employeeData/FirstName} {mainModel>/employeeData/LastName}"
+							wrapping="true"/>
+					</FlexBox>
+				</uxap:snappedHeading>
+
+				<uxap:expandedContent>
+					<Text visible="{= !${mainModel>/edit} }"
+						text="{
+						parts: [
+							{path: 'mainModel>/employeeData/PositionID'},
+							{path: 'mainModel>/allPositions'},
+							{path: 'propertiesModel>/Name'}
+						],
+						formatter: '.formatter.formatEntityDataByProperty'
+					}" />
+
+					<Select visible="{mainModel>/edit}"
+						fieldGroupIds="validateEmployeeDialogGroupID"
+						selectedKey="{editModel>/PositionID}"
+						forceSelection="false"
+						items="{
+						path: 'mainModel>/allPositions',
+						sorter : {
+							path : 'Name' 
+						}
+					}">
+						<core:Item key="{mainModel>ID}"
+							text="{mainModel>Name}"/>
+					</Select>
+				</uxap:expandedContent>
+
+				<uxap:snappedContent>
+					<Text text="{
+						parts: [
+							{path: 'mainModel>/employeeData/PositionID'},
+							{path: 'mainModel>/allPositions'},
+							{path: 'propertiesModel>/Name'}
+						],
+						formatter: '.formatter.formatEntityDataByProperty'
+					}" />
+				</uxap:snappedContent>
+
+				<uxap:actions>
+					<OverflowToolbarButton icon="sap-icon://edit"
+						text="{i18n>EditHeader}"
+						type="Transparent"
+						tooltip="edit"
+						visible="{= !${mainModel>/edit} }"
+						press="onEditButtonPress"/>
+					<OverflowToolbarButton icon="sap-icon://delete"
+						text="{i18n>DeleteLowCase}"
+						type="Transparent"
+						tooltip="delete"
+						press="onDeleteButtonPress"/>
+				</uxap:actions>
+
+
+			</uxap:ObjectPageDynamicHeaderTitle>
+
+
+		</uxap:headerTitle>
+
+		<uxap:headerContent >
+			<FlexBox wrap="Wrap"
+				busyIndicatorDelay="0"
+				busy="{mainModel>/headerBusy}">
+
+				<Avatar src="{mainModel>/employeeData/Photo}"
+					displaySize="L" />
+
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<Link visible="{= !${mainModel>/edit} }"
+						text="{mainModel>/employeeData/Contacts}"/>
+
+					<Input visible="{mainModel>/edit}"
+						type="Text"
+						placeholder="{i18n>EnterContacts}"
+						fieldGroupIds="validateEmployeeDialogGroupID"
+						value="{
+							path:'editModel>/Contacts',
+							type: 'sap.ui.model.type.String'
+						}" />
+
+				</l:VerticalLayout>
+
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<Label text="{i18n>Utilization}"/>
+					<ProgressIndicator percentValue="{mainModel>/employeeData/Utilization}"
+						displayValue="{mainModel>/employeeData/Utilization}%"
+						state="{
+							path: 'mainModel>/employeeData/Utilization',
+							formatter: '.formatter.formatProgressIndicator'
+						}"/>
+				</l:VerticalLayout>
+
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<Label text="{i18n>ProjectStatus}"/>
+					<ObjectStatus visible="{= !${mainModel>/edit} }"
+						class="sapUiSmallMarginBottom"
+						text="{ 
+							parts: [
+								{path: 'mainModel>/employeeData/StatusCode'},
+								{path: 'mainModel>/allStatuses'}
+							],
+							formatter: '.formatter.formatGenericStatuses'
+						}"
+						state="{
+								path: 'mainModel>/employeeData/StatusCode',
+								formatter: '.formatter.formatStatusState'
+						}" />
+
+					<Select visible="{mainModel>/edit}"
+						fieldGroupIds="validateEmployeeDialogGroupID"
+						width="15rem"
+						selectedKey="{
+							path: 'editModel>/StatusCode',
+							type: 'sap.ui.model.type.String'
+						}"
+						forceSelection="false"
+						items="{
+							path: 'mainModel>/allStatuses',
+							sorter : {
+								path : 'StatusCode' 
+							}
+						}"
+						showSecondaryValues= "true">
+						<core:ListItem key="{mainModel>StatusCode}"
+							text="{mainModel>Description}"
+							additionalText="{mainModel>StatusCode}"/>
+					</Select>
+				</l:VerticalLayout>
+
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<Label text="{i18n>WorkExperience}"/>
+					<Text visible="{= !${mainModel>/edit} }"
+						text="{mainModel>/employeeData/WorkExperience}" />
+
+					<Input visible="{mainModel>/edit}"
+						fieldGroupIds="validateEmployeeDialogGroupID"
+						placeholder="{i18n>EnterWorkExperience}"
+						type="Number"
+						value="{
+							path: 'editModel>/WorkExperience',
+							type: 'sap.ui.model.type.Integer',
+							constraints: {
+								minimum: 0
+							}
+						}" />
+				</l:VerticalLayout>
+
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<Label text="{i18n>Location}"/>
+					<Text visible="{= !${mainModel>/edit} }"
+						text="{mainModel>/employeeData/Location}" />
+
+					<Input visible="{mainModel>/edit}"
+						type="Text"
+						placeholder="{i18n>EnterLocation}"
+						fieldGroupIds="validateEmployeeDialogGroupID"
+						value="{
+							path: 'editModel>/Location',
+							type: 'sap.ui.model.type.String'
+						}" />
+				</l:VerticalLayout>
+
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<Label text="{i18n>Boss}"/>
+					<Link visible="{= !${mainModel>/edit} }"
+						href="#/employees/{mainModel>/employeeData/BossID}"
+						text="{
+							parts: [
+								{path: 'mainModel>/employeeData/BossID'}, 
+								{path: 'mainModel>/allEmployees'}],
+							formatter: '.formatter.formatBossName'
+						}"/>
+
+					<Select visible="{mainModel>/edit}"
+						fieldGroupIds="validateEmployeeDialogGroupID"
+						width="15rem"
+						selectedKey="{editModel>/BossID}"
+						forceSelection="false"
+						items="{
+							path: 'mainModel>/allEmployees',
+							sorter : {
+								path : 'FirstName' 
+							}
+						}">
+						<core:Item key="{mainModel>ID}"
+							text="{mainModel>FirstName} {mainModel>LastName}"/>
+					</Select>
+				</l:VerticalLayout>
+
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<Label text="{i18n>Role}"/>
+					<Text visible="{= !${mainModel>/edit} }"
+						text="{mainModel>/employeeData/Role}" />
+
+					<Select visible="{mainModel>/edit}"
+						fieldGroupIds="validateEmployeeDialogGroupID"
+						width="15rem"
+						selectedKey="{
+							path: 'editModel>/Role',
+							type: 'sap.ui.model.type.String'
+						}"
+						forceSelection="false"
+						items="{
+							path: 'mainModel>/allRoles',
+							sorter : {
+								path : 'Name' 
+							}
+						}">
+						<core:Item key="{mainModel>Name}"
+							text="{mainModel>Name}"/>
+					</Select>
+				</l:VerticalLayout>
+
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<Label text="{i18n>Department}"/>
+					<Text visible="{= !${mainModel>/edit} }"
+						text="{
+							parts: [
+								{path: 'mainModel>/employeeData/DepartmentID'},
+								{path: 'mainModel>/allDepartments'},
+								{path: 'propertiesModel>/Name'}
+							],
+							formatter: '.formatter.formatEntityDataByProperty'
+						}" />
+
+					<Select visible="{mainModel>/edit}"
+						fieldGroupIds="validateEmployeeDialogGroupID"
+						width="15rem"
+						selectedKey="{editModel>/DepartmentID}"
+						forceSelection="false"
+						items="{
+							path: 'mainModel>/allDepartments',
+							sorter : {
+								path : 'Name' 
+							}
+						}">
+						<core:Item key="{mainModel>ID}"
+							text="{mainModel>Name}"/>
+					</Select>
+				</l:VerticalLayout>
+
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<Label text="{i18n>AverageRating}" />
+					<RatingIndicator maxValue="5"
+						class="sapUiSmallMarginBottom"
+						value="{mainModel>/averageRating}"
+						tooltip="Rating Tooltip"
+						editable="false" />
+				</l:VerticalLayout>
+			</FlexBox>
+		</uxap:headerContent>
+
+		<uxap:sections>
+
+			<uxap:ObjectPageSection titleUppercase="false"
+				id="generalSection"
+				title="{i18n>GENERAL_INFO}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection id="generalSection1">
+						<uxap:blocks>
+							<core:Fragment id="generalInfo"
+								fragmentName="manage.company.view.fragments.GeneralInfo"
+								type="XML" />
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+
+			<uxap:ObjectPageSection titleUppercase="false"
+				id="projectsSection"
+				title="{i18n>PROJECTS}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection id="projectsSection1">
+						<uxap:blocks>
+							<core:Fragment fragmentName="manage.company.view.fragments.Projects"
+								type="XML" />
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+
+			<uxap:ObjectPageSection titleUppercase="false"
+				id="skillsSection"
+				title="{i18n>SKILLS}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection id="skillsSection1">
+						<uxap:blocks>
+							<core:Fragment id="skills"
+								fragmentName="manage.company.view.fragments.Skills"
+								type="XML" />
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+
+
+			<uxap:ObjectPageSection titleUppercase="false"
+				id="feedbacksSection"
+				title="{i18n>FEEDBACK_RATING}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection id="feedbacksSection1">
+						<uxap:blocks>
+							<core:Fragment id="feedbacks"
+								fragmentName="manage.company.view.fragments.Feedbacks"
+								type="XML" />
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+
+			<uxap:ObjectPageSection titleUppercase="false"
+				id="attachmentsSection"
+				title="{i18n>ATTACHMENTS}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection id="attachmentsSection1">
+						<uxap:blocks>
+							<core:Fragment id="attachments"
+								fragmentName="manage.company.view.fragments.Attachments"
+								type="XML" />
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+
+		</uxap:sections>
+
+		<uxap:footer class="sapUiContentPadding">
+			<OverflowToolbar>
+				<ToolbarSpacer />
+				<Button press="onSaveChangesPress"
+					text="{i18n>Save}" />
+				<Button press="onCancelChangesPress"
+					text="{i18n>Cancel}" />
+			</OverflowToolbar>
+		</uxap:footer>
+
+	</uxap:ObjectPageLayout>
+
+
+
+
+</mvc:View>

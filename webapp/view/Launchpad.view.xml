@@ -1,0 +1,62 @@
+<mvc:View xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="manage.company.controller.Launchpad">
+
+	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="{i18n>OrganizationStructure}"
+		subheader="Hierarchy"
+		press="onMenuItemPress('OrganizationStructure')">
+		<TileContent>
+			<ImageContent src="sap-icon://org-chart" />
+		</TileContent>
+	</GenericTile>
+
+	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="{i18n>Employees}"
+		press="onMenuItemPress('Employees')">
+		<TileContent>
+			<ImageContent src="sap-icon://employee" />
+		</TileContent>
+	</GenericTile>
+
+	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="{i18n>Teams}"
+		press="onMenuItemPress('Teams')">
+		<TileContent>
+			<ImageContent src="sap-icon://group" />
+		</TileContent>
+	</GenericTile>
+
+	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="{i18n>Projects}"
+		press="onMenuItemPress('Projects')">
+		<TileContent>
+			<ImageContent src="sap-icon://capital-projects" />
+		</TileContent>
+	</GenericTile>
+
+	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="{i18n>BusinessTrips}"
+		press="onMenuItemPress('BusinessTrips')">
+		<TileContent>
+			<ImageContent src="sap-icon://flight" />
+		</TileContent>
+	</GenericTile>
+
+	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="{i18n>BusinessPartners}"
+		press="onMenuItemPress('BusinessPartners')">
+		<TileContent>
+			<ImageContent src="sap-icon://decision" />
+		</TileContent>
+	</GenericTile>
+
+	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+		header="{i18n>DashBoard}"
+		press="onMenuItemPress('DashBoard')">
+		<TileContent>
+			<ImageContent src="sap-icon://vertical-bar-chart-2" />
+		</TileContent>
+	</GenericTile>
+
+</mvc:View>

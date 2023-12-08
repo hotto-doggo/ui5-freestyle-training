@@ -1,0 +1,65 @@
+<mvc:View xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:ng="sap.suite.ui.commons.networkgraph"
+	xmlns:layout="sap.suite.ui.commons.networkgraph.layout"
+	controllerName="manage.company.controller.OrganizationStructure">
+
+	<ng:Graph enableWheelZoom="false"
+		orientation="TopBottom"
+		nodes="{organizationStructureModel>/allEmployees}"
+		lines="{organizationStructureModel>/allEmployees}"
+		search="onSelectionChange"
+		id="graph">
+		<ng:layoutAlgorithm>
+			<layout:LayeredLayout mergeEdges="true"
+				nodePlacement="Simple"
+				nodeSpacing="40"/>
+		</ng:layoutAlgorithm>
+		<ng:nodes>
+			<ng:Node icon="sap-icon://employee"
+				key="{organizationStructureModel>ID}"
+				description="{organizationStructureModel>FirstName} {organizationStructureModel>LastName}"
+				title="{organizationStructureModel>FirstName} {organizationStructureModel>LastName}"
+				width="110"
+				showActionLinksButton="false"
+				showDetailButton="false"
+				descriptionLineSize="0"
+				shape="Box">
+				<ng:customData>
+					<core:CustomData key="id"
+						value="{organizationStructureModel>ID}"/>
+					<core:CustomData key="fullName"
+						value="{organizationStructureModel>FirstName} {organizationStructureModel>LastName}"/>
+					<core:CustomData key="role"
+						value="{organizationStructureModel>Role}"/>
+					<core:CustomData key="location"
+						value="{organizationStructureModel>Location}"/>
+					<core:CustomData key="contacts"
+						value="{organizationStructureModel>Contacts}"/>
+					<core:CustomData key="department"
+						value="{organizationStructureModel>DepartmentID}"/>
+					<core:CustomData key="teamId"
+						value="{organizationStructureModel>TeamID}"/>
+					<core:CustomData key="teamSize"
+						value="{organizationStructureModel>TeamSize}"/>
+				</ng:customData>
+				<ng:attributes>
+					<ng:ElementAttribute value="{organizationStructureModel>Role}"/>
+				</ng:attributes>
+				<ng:actionButtons>
+					<ng:ActionButton title="PersonDetail"
+						icon="sap-icon://person-placeholder"
+						press="onPersonDetailsButtonPress" />
+				</ng:actionButtons>
+
+			</ng:Node>
+		</ng:nodes>
+		<ng:lines>
+			<ng:Line from="{organizationStructureModel>BossID}"
+				to="{organizationStructureModel>ID}"
+				arrowOrientation="None" />
+		</ng:lines>
+	</ng:Graph>
+
+</mvc:View>

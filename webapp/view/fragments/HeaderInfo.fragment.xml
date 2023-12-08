@@ -1,0 +1,87 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+	<VBox>
+
+		<HBox>
+			<l:VerticalLayout class="sapUiSmallMarginEnd">
+				<Label text="{i18n>Name}"/>
+				<Input visible="{mainModel>/edit}"
+					type="Text"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					value="{
+							path:'editModel>/Name',
+							type: 'sap.ui.model.type.String'
+						}" />
+			</l:VerticalLayout>
+
+			<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+				<Label text="{i18n>Type}"/>
+				<Select visible="{mainModel>/edit}"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					width="15rem"
+					selectedKey="{editModel>/Type}"
+					forceSelection="false"
+					items="{
+							path: 'mainModel>/types',
+							sorter : {
+								path : 'Type' 
+							}
+						}">
+					<core:Item key="{mainModel>Type}"
+						text="{mainModel>Type}"/>
+				</Select>
+			</l:VerticalLayout>
+
+			<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+				<Label text="{i18n>Status}"/>
+
+				<Select visible="{mainModel>/edit}"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					width="15rem"
+					selectedKey="{
+							path: 'editModel>/StatusCode',
+							type: 'sap.ui.model.type.String'
+						}"
+					forceSelection="false"
+					items="{
+							path: 'mainModel>/allStatusesProject',
+							sorter : {
+								path : 'StatusCode' 
+							}
+						}"
+					showSecondaryValues= "true">
+					<core:ListItem key="{mainModel>StatusCode}"
+						text="{mainModel>Description}"
+						additionalText="{mainModel>StatusCode}"/>
+				</Select>
+			</l:VerticalLayout>
+
+			<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+				<Label text="{i18n>Location}"/>
+
+				<Select visible="{mainModel>/edit}"
+					fieldGroupIds="validateEmployeeDialogGroupID"
+					width="15rem"
+					selectedKey="{editModel>/Location}"
+					forceSelection="false"
+					items="{
+							path: 'mainModel>/projects',
+							sorter : {
+								path : 'Location' 
+							}
+						}">
+					<core:Item key="{mainModel>Location}"
+						text="{mainModel>Location}"/>
+				</Select>
+			</l:VerticalLayout>
+
+
+		</HBox>
+
+	</VBox>
+
+
+
+</core:FragmentDefinition>

@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<QuickView id="quickView">
+		<QuickViewPage header="{i18n>Employee}"
+			icon="sap-icon://employee"
+			title="{quickViewModel>/fullName}"
+			description="{quickViewModel>/role}">
+			<QuickViewGroup heading="{i18n>ContactDetail}">
+				<QuickViewGroupElement label="{i18n>Location}"
+					value="{quickViewModel>/location}"/>
+				<QuickViewGroupElement label="{i18n>Contacts}"
+					value="{quickViewModel>/contacts}" />
+				<QuickViewGroupElement target="_parent" label="{i18n>LinkToDetails}"
+					value="{i18n>Click}"
+					url="#/employees/{quickViewModel>/id}"
+					type="link"/>
+			</QuickViewGroup>
+			<QuickViewGroup heading="{i18n>Team}">
+				<QuickViewGroupElement label="{i18n>Size}"
+					value="{quickViewModel>/teamSize}" />
+				<QuickViewGroupElement label="{i18n>CountOfSubordinates}"
+					value="{quickViewModel>/subordinatesCount}" />
+				<QuickViewGroupElement label="{i18n>Department}"
+					value="{quickViewModel>/department}" />
+			</QuickViewGroup>
+		</QuickViewPage>
+	</QuickView>
+</core:FragmentDefinition>

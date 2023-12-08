@@ -1,0 +1,102 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog contentWidth="100%"
+		id="AddTeamMemberDialog"
+		title="{i18n>SelectEmployee}"
+		afterClose="onAfterAddTeamDialogClose">
+
+		<f:SimpleForm id="AddTeamMemberDialogID"
+			editable="true"
+			maxContainerCols="1"
+			layout="ResponsiveGridLayout"
+			adjustLabelSpan="false">
+			<f:content>
+
+				<VBox>
+
+					<SearchField width="100%"
+						search="onAddMemberSearch" />
+
+					<Table sticky="HeaderToolbar,ColumnHeaders"
+						growing="true"
+						growingThreshold="10"
+						id="addNewMemberTableID"
+						mode="MultiSelect"
+						items="{teamsModel>/addMemberEmployees}"
+						noDataText="{i18n>NoDataWasFoundForThisRequest}">
+
+						<columns>
+							<Column vAlign="Middle"
+								minScreenWidth="Large"
+								demandPopin="true">
+								<Text text="{i18n>FirstName}" />
+							</Column>
+							<Column vAlign="Middle"
+								minScreenWidth="Large"
+								demandPopin="true">
+								<Text text="{i18n>LastName}" />
+							</Column>
+							<Column vAlign="Middle"
+								minScreenWidth="1270px"
+								demandPopin="true">
+								<Text text="{i18n>Location}" />
+							</Column>
+							<Column vAlign="Middle"
+								minScreenWidth="1500px"
+								demandPopin="true">
+								<Text text="{i18n>Status}" />
+							</Column>
+							<Column vAlign="Middle"
+								minScreenWidth="1070px"
+								demandPopin="true">
+								<Text text="{i18n>Role}" />
+							</Column>
+
+						</columns>
+
+						<items>
+							<ColumnListItem press="onEmployeeItemPress"
+								vAlign="Middle">
+								<cells type="Active">
+
+									<Text text="{teamsModel>FirstName}" />
+
+									<Text text="{teamsModel>LastName}" />
+
+									<Text text="{teamsModel>Location}" />
+
+									<ObjectStatus class="sapUiSmallMarginBottom"
+										text="{
+									parts: [
+										{path: 'teamsModel>StatusCode'},
+										{path: 'teamsModel>/statuses'}
+									],
+									formatter: '.formatter.formatGenericStatuses'
+								}"
+										state="{
+									path: 'teamsModel>StatusCode',
+									formatter: '.formatter.formatStatusState'
+								}" />
+
+									<Text text="{teamsModel>Role}" />
+
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+
+				</VBox>
+
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+			<Button text="{i18n>Ok}"
+				press="onAddTeamMemberSubmitPress"
+				type="Emphasized" />
+			<Button text="{i18n>Cancel}"
+				press="onAddTeamMemberCancelPress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,204 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "manage.company",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_belize"]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": "manage.company.view.App",
+		"routing": {
+			"config": {
+				"routerClass": "sap.f.routing.Router",
+				"viewType": "XML",
+				"viewPath": "manage.company.view",
+				"controlId": "layout",
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": ["notFound"]
+				},
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "Launchpad",
+					"target": ["launchpad"]
+				},
+				{
+					"pattern": "employees",
+					"name": "Employees",
+					"target": ["employees"]
+				},
+				{
+					"pattern": "employees/{EmployeeID}",
+					"name": "EmployeeDetails",
+					"target": ["employeeDetails"]
+				},
+				{
+					"pattern": "organization-structure",
+					"name": "OrganizationStructure",
+					"target": ["organizationStructure"]
+				},
+				{
+					"pattern": "teams",
+					"name": "Teams",
+					"target": ["teams"]
+				},
+				{
+					"pattern": "projects",
+					"name": "Projects",
+					"target": ["projects"]
+				},
+				{
+					"pattern": "projects/{ProjectID}",
+					"name": "ProjectDetails",
+					"target": ["projectDetails"]
+				},
+				{
+					"pattern": "business-trips",
+					"name": "BusinessTrips",
+					"target": ["businessTrips"]
+				},
+				{
+					"pattern": "business-partners",
+					"name": "BusinessPartners",
+					"target": ["businessPartners"]
+				},
+				{
+					"pattern": "business-partners/{BusinessPartnerID}",
+					"name": "BusinessPartnerDetails",
+					"target": ["businessPartners", "businessPartnerDetails"]
+				}
+			],
+
+			"targets": {
+				"launchpad": {
+					"viewName": "Launchpad",
+					"viewId": "launchpad",
+					"controlAggregation": "beginColumnPages",
+					"viewLevel": 1
+				},
+
+				"employees": {
+					"viewName": "Employees",
+					"viewId": "employees",
+					"controlAggregation": "beginColumnPages",
+					"viewLevel": 2
+				},
+
+				"employeeDetails": {
+					"viewName": "EmployeeDetails",
+					"viewId": "employeeDetails",
+					"controlAggregation": "beginColumnPages",
+					"viewLevel": 3
+				},
+
+				"notFound": {
+					"viewName": "NotFound",
+					"viewId": "notFound",
+					"controlAggregation": "beginColumnPages",
+					"viewLevel": 2
+				},
+
+				"organizationStructure": {
+					"viewName": "OrganizationStructure",
+					"viewId": "organizationStructure",
+					"controlAggregation": "beginColumnPages",
+					"viewLevel": 2
+				},
+
+				"teams": {
+					"viewName": "Teams",
+					"viewId": "teams",
+					"controlAggregation": "beginColumnPages",
+					"viewLevel": 2
+				},
+
+				"projects": {
+					"viewName": "Projects",
+					"viewId": "projects",
+					"controlAggregation": "beginColumnPages",
+					"viewLevel": 2
+				},
+
+				"projectDetails": {
+					"viewName": "ProjectDetails",
+					"viewId": "projectDetails",
+					"controlAggregation": "beginColumnPages",
+					"viewLevel": 3
+				},
+
+				"businessTrips": {
+					"viewName": "BusinessTrips",
+					"viewId": "businessTrips",
+					"controlAggregation": "beginColumnPages",
+					"viewLevel": 2
+				},
+
+				"businessPartners": {
+					"viewName": "BusinessPartners",
+					"viewId": "businessPartners",
+					"controlAggregation": "beginColumnPages",
+					"viewLevel": 2
+				},
+
+				"businessPartnerDetails": {
+					"viewType": "XML",
+					"viewName": "BusinessPartnerDetails",
+					"viewId": "businessPartnerDetails",
+					"controlAggregation": "midColumnPages",
+					"viewLevel": 2
+				}
+			}
+		},
+		"dependencies": {
+			"minUI5Version": "1.44.19",
+			"libs": {
+				"sap.m": {},
+				"sap.f": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "manage.company.i18n.i18n"
+				}
+			},
+			"navButtonModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/NavButtonModel.json"
+			},
+			"propertiesModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/PropertiesModel.json"
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/styles.css"
+				}
+			]
+		}
+	}
+}

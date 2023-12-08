@@ -1,0 +1,118 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	
+	xmlns:fb="sap.ui.comp.filterbar">
+
+
+	<fb:FilterBar id="filterBar"
+		search="onFilterSearch"
+		clear="onFilterReset"
+		useToolbar="false"
+		showGoOnFB="true"
+		showClearOnFB="true">
+		<fb:filterItems>
+			<fb:FilterItem name="name"
+				label="{i18n>Name}">
+				<fb:control>
+					<Input id="nameFilter"
+						class="sapUiSmallMarginBottom"
+						value="{filtersModel>/Name}">
+
+					</Input>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="type"
+				label="{i18n>ProjectType}">
+				<fb:control>
+					<MultiComboBox id="projectTypeFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/Type}"
+						items="{
+							path: 'mainModel>/types',
+							sorter : {
+								path : 'Type' 
+							}
+						}">
+						<core:Item key="{mainModel>Type}"
+							text="{mainModel>Type}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="time"
+				label="{i18n>ProjectTimeline}">
+				<fb:control>
+					<DateRangeSelection id="projectTimelineFilter"
+						displayFormat="dd.MM.YYYY"
+						dateValue="{path: 'filtersModel>/StartDate'}"
+						secondDateValue="{path: 'filtersModel>/EndDate'}"/>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="customer"
+				label="{i18n>ProjectCustomer}">
+				<fb:control>
+					<MultiComboBox id="customerFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/CustomerID}"
+						items="{
+							path: 'mainModel>/partners',
+							sorter : {
+								path : 'Name' 
+							}
+						}">
+						<core:Item key="{mainModel>ID}"
+							text="{mainModel>Name}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="lead"
+				label="{i18n>ProjectLead}">
+				<fb:control>
+					<MultiComboBox id="leadFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/LeadID}"
+						items="{
+							path: 'mainModel>/data',
+							sorter : {
+								path : 'Name' 
+							}
+						}">
+						<core:Item key="{mainModel>LeadID}"
+							text="{
+								parts: [
+									{path: 'mainModel>LeadID'}, 
+									{path: 'mainModel>/employees'}],
+								formatter: '.formatter.formatBossName'
+							}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="location"
+				label="{i18n>ProjectLocation}">
+				<fb:control>
+					<MultiComboBox id="locationFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/Location}"
+						items="{mainModel>/data}">
+						<core:Item key="{mainModel>Location}"
+							text="{mainModel>Location}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="status"
+				label="{i18n>ProjectStatus}">
+				<fb:control>
+					<MultiComboBox id="statusFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/StatusCode}"
+						items="{mainModel>/statuses}">
+						<core:Item key="{mainModel>StatusCode}"
+							text="{mainModel>Description}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+		</fb:filterItems>
+	</fb:FilterBar>
+
+
+
+</core:FragmentDefinition>

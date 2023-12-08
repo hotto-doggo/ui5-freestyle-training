@@ -1,0 +1,60 @@
+<mvc:View xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	controllerName="manage.company.controller.App"
+	displayBlock="true"
+	height="calc(100vh - 44px)">
+
+	<f:ShellBar title="{i18n>Menu}"
+		secondTitle="{i18n>ManageCompany}"
+		showNavButton="{navButtonModel>/showNavButton}"
+		showCopilot="true"
+		showNotifications="true"
+		notificationsNumber="2"
+		navButtonPressed="onNavBack">
+		<f:menu>
+			<Menu>
+				<MenuItem press="onMenuItemPress('Launchpad')"
+					text="{i18n>Launchpad}"
+					icon="sap-icon://home" />
+				<MenuItem press="onMenuItemPress('OrganizationStructure')"
+					text="{i18n>OrganizationStructure}"
+					icon="sap-icon://org-chart" />
+				<MenuItem press="onMenuItemPress('Employees')"
+					text="{i18n>Employees}"
+					icon="sap-icon://employee" />
+				<MenuItem press="onMenuItemPress('Teams')"
+					text="{i18n>Teams}"
+					icon="sap-icon://group" />
+				<MenuItem press="onMenuItemPress('Projects')"
+					text="{i18n>Projects}"
+					icon="sap-icon://capital-projects" />
+				<MenuItem press="onMenuItemPress('BusinessTrips')"
+					text="{i18n>BusinessTrips}"
+					icon="sap-icon://flight" />
+				<MenuItem press="onMenuItemPress('BusinessPartners')"
+					text="{i18n>BusinessPartners}"
+					icon="sap-icon://decision" />
+				<MenuItem press="onMenuItemPress('DashBoard')"
+					text="{i18n>DashBoard}"
+					icon="sap-icon://vertical-bar-chart-2" />
+			</Menu>
+		</f:menu>
+		<f:profile>
+			<f:Avatar initials="UI"/>
+		</f:profile>
+		<f:searchManager>
+			<f:SearchManager id="searchField">
+
+			</f:SearchManager>
+		</f:searchManager>
+	</f:ShellBar>
+
+	<App id="RootApp">
+		<f:FlexibleColumnLayout id="layout"
+			layout="{navButtonModel>/columnLayout}"
+			backgroundDesign="Translucent">
+		</f:FlexibleColumnLayout>
+	</App>
+
+</mvc:View>

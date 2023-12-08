@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- <meta http-equiv="Content-Security-Policy" content="connect-src 'self' sapui5.hana.ondemand.com http://localhost:3000;" /> -->
+		<!-- <meta http-equiv="Content-Security-Policy" content="style-src 'self';"> -->
+		<!-- <meta http-equiv="Content-Security-Policy" content="font-src 'self';"> -->
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Manage company</title>
+
+		<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2ghESrSiPI9paXW-xkd9ImQmD31_69hA&libraries=places" type="text/javascript"></script>
+
+		<!-- Bootstrap the UI5 core library -->
+		<script
+			id="sap-ui-bootstrap"
+			src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_fiori_3"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-language="en"
+			data-sap-ui-resourceroots='{"manage.company": "./"}'
+		></script>
+
+		<!-- <script>
+			alert("lolkek");
+		</script> -->
+
+		<script>
+			sap.ui.getCore().attachInit(function () {
+				new sap.ui.core.ComponentContainer({
+					name: "manage.company",
+				}).placeAt("content");
+			});
+		</script>
+	</head>
+	<body class="sapUiBody sapUiSizeCompact" id="content"></body>
+</html>

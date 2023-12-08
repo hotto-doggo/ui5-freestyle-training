@@ -1,0 +1,92 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:fb="sap.ui.comp.filterbar">
+
+
+	<fb:FilterBar id="filterBar"
+		search="onFilterSearch"
+		clear="onFilterReset"
+		useToolbar="false"
+		showGoOnFB="true"
+		showClearOnFB="true">
+		<fb:filterItems>
+			<fb:FilterItem name="employee"
+				label="{i18n>Employee}">
+				<fb:control>
+					<MultiComboBox id="employeeFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/EmployeeID}"
+						items="{
+							path: 'mainModel>/employees'
+						}">
+						<core:Item key="{mainModel>ID}"
+							text="{mainModel>FirstName} {mainModel>LastName}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="project"
+				label="{i18n>Project}">
+				<fb:control>
+					<MultiComboBox id="projectFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/ProjectID}"
+						items="{
+							path: 'mainModel>/projects',
+							sorter : {
+								path : 'Name' 
+							}
+						}">
+						<core:Item key="{mainModel>ID}"
+							text="{mainModel>Name}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="time"
+				label="{i18n>Timeline}">
+				<fb:control>
+					<DateRangeSelection id="projectTimelineFilter"
+						displayFormat="dd.MM.YYYY"
+						dateValue="{filtersModel>/StartDate}"
+						secondDateValue="{filtersModel>/EndDate}"/>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="tromLocation"
+				label="{i18n>FromLocation}">
+				<fb:control>
+					<MultiComboBox id="fromLocationFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/FromLocation}"
+						items="{
+							path: 'mainModel>/locations',
+							sorter : {
+								path : 'Location' 
+							}
+						}">
+						<core:Item key="{mainModel>Location}"
+							text="{mainModel>Location}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+			<fb:FilterItem name="toLocation"
+				label="{i18n>ToLocation}">
+				<fb:control>
+					<MultiComboBox id="toLocationFilter"
+						fieldGroupIds="filterBarGroupID"
+						selectedKeys="{filtersModel>/ToLocation}"
+						items="{
+							path: 'mainModel>/locations',
+							sorter : {
+								path : 'Location' 
+							}
+						}">
+						<core:Item key="{mainModel>Location}"
+							text="{mainModel>Location}"/>
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterItem>
+		</fb:filterItems>
+	</fb:FilterBar>
+
+
+
+</core:FragmentDefinition>

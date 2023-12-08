@@ -1,0 +1,94 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+
+	<VBox>
+
+		<RatingIndicator maxValue="5"
+			class="sapUiSmallMarginBottom"
+			value="{feedbackModel>/Rating}"
+			tooltip="Rating Tooltip"
+			editable="true" />
+		<FeedInput post="onFeedbackPost"
+			class="sapUiSmallMarginTopBottom"
+			value="{feedbackModel>/Text}" />
+
+		<Table sticky="HeaderToolbar,ColumnHeaders"
+			growing="true"
+			growingThreshold="5"
+			id="idProductsTable"
+			fixedLayout="false"
+			busyIndicatorDelay="0"
+			busy="{mainModel>/feedbacksBusy}"
+			noDataText="{i18n>ThereAreNoReviewsForThisEmployee}"
+			items="{mainModel>/feedbacks}">
+
+			<columns>
+				<Column minScreenWidth="Large"
+					demandPopin="true">
+					<HBox alignItems="Center">
+						<Text text="{i18n>User}" />
+					</HBox>
+				</Column>
+				<Column minScreenWidth="Large"
+					demandPopin="true">
+					<HBox alignItems="Center">
+						<Text text="{i18n>Text}" />
+					</HBox>
+				</Column>
+				<Column minScreenWidth="Large"
+					demandPopin="true">
+					<HBox alignItems="Center">
+						<Text text="{i18n>Date}" />
+					</HBox>
+				</Column>
+				<Column minScreenWidth="890px"
+					demandPopin="true">
+					<HBox alignItems="Center">
+						<Text text="{i18n>Rating}" />
+					</HBox>
+				</Column>
+			</columns>
+
+			<items>
+				<ColumnListItem press="onEmployeeItemPress"
+					vAlign="Middle">
+					<cells type="Active">
+
+						<Text text="{
+								parts: [
+									{path: 'mainModel>AuthorID'}, 
+									{path: 'mainModel>/allEmployees'}],
+								formatter: '.formatter.formatBossName'
+							}" />
+
+						<Text text="{mainModel>Text}" />
+
+						<Text wrapping="false"
+							text="{
+								path: 'mainModel>Date',
+								formatter: '.formatter.formatDateWithDot'
+							}" />
+
+						<RatingIndicator maxValue="5"
+							class="sapUiSmallMarginBottom"
+							value="{
+								path: 'mainModel>Rating',
+								formatter: '.formatter.formatRating'
+							}"
+							tooltip="Rating Tooltip"
+							editable="false" />
+
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+
+
+
+	</VBox>
+
+
+
+</core:FragmentDefinition>
